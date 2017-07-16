@@ -29,7 +29,7 @@ class FormularioAutor extends Component {
             if (res.ok) {
                 res.json()
                     .then(resposta => PubSub.publish('atualiza-lista-autores', resposta))
-                    .then(() => this.setState({nome:'',email:'',senha:''}));
+                    .then(() => this.setState({nome: '', email: '', senha: ''}));
             } else if (res.status === 400) {
                 res.json()
                     .then(resposta => new TratadorErros().publicErros(resposta));
@@ -122,8 +122,13 @@ class AutorBox extends Component {
     render() {
         return (
             <div>
-                <FormularioAutor/>
-                <TabelaAutores lista={this.state.lista}/>
+                <div className="header">
+                    <h1>Cadastro de autores</h1>
+                </div>
+                <div className="content" id="content">
+                    <FormularioAutor/>
+                    <TabelaAutores lista={this.state.lista}/>
+                </div>
             </div>
         );
     }
